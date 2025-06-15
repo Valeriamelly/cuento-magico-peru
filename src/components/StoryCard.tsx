@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Book, Clock, User, Sparkles } from 'lucide-react';
+import { Book, Clock, User } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Story } from '@/data/stories';
 
@@ -22,13 +22,11 @@ const StoryCard: React.FC<StoryCardProps> = ({ story, onClick }) => {
       <div className="absolute top-1 left-1 md:top-2 md:left-2 text-xs opacity-40 md:opacity-50 animate-pulse">✨</div>
       <div className="absolute top-2 right-6 md:top-3 md:right-8 text-xs opacity-30 md:opacity-40 animate-bounce" style={{animationDelay: '0.5s'}}>🌟</div>
       
-      <div className="relative h-32 md:h-44 overflow-hidden">
-        <img
-          src={story.coverImage}
-          alt={story.title}
-          className="w-full h-full object-cover transition-all duration-500 md:duration-700 group-hover:scale-110 md:group-hover:scale-125 md:group-hover:rotate-2"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent md:group-hover:from-black/50" />
+      <div className="relative h-32 md:h-44 overflow-hidden bg-gradient-to-br from-peru-blue/10 to-peru-purple/10 flex items-center justify-center">
+        {/* Icono vectorial grande como portada */}
+        <div className="text-6xl md:text-8xl animate-bounce group-hover:scale-110 transition-transform duration-500">
+          {story.coverImage}
+        </div>
         
         {/* Badges optimizados para móvil */}
         <div className="absolute bottom-1 left-1 md:bottom-2 md:left-2 bg-peru-red text-white px-2 py-1 md:px-3 md:py-1 rounded-full text-xs font-comic font-bold transform transition-all duration-300 group-hover:scale-105 md:group-hover:scale-110 group-hover:bg-peru-red/90 shadow-lg">
@@ -36,11 +34,6 @@ const StoryCard: React.FC<StoryCardProps> = ({ story, onClick }) => {
         </div>
         <div className="absolute top-1 right-1 md:top-2 md:right-2 bg-peru-blue text-white px-2 py-1 md:px-3 md:py-1 rounded-full text-xs font-comic font-bold transform transition-all duration-300 group-hover:scale-105 md:group-hover:scale-110 group-hover:bg-peru-blue/90 shadow-lg">
           {story.ageRange}
-        </div>
-
-        {/* Icono de brillo en hover - solo desktop */}
-        <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-125">
-          <Sparkles className="h-6 w-6 md:h-8 md:w-8 text-white animate-pulse" />
         </div>
       </div>
       

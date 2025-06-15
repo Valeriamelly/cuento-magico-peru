@@ -91,14 +91,17 @@ const StoryViewer: React.FC<StoryViewerProps> = ({ story, onClose }) => {
 
         {/* Main Content - Layout adaptativo */}
         <div className="flex-1 flex flex-col md:flex-row bg-gray-50 overflow-hidden">
-          {/* Image Section */}
+          {/* Image Section - Ahora con iconos vectoriales */}
           <div className="flex-1 p-3 md:p-6 order-1 md:order-1">
-            <div className="h-48 md:h-full rounded-xl md:rounded-2xl overflow-hidden shadow-lg bg-white flex items-center justify-center">
-              <img
-                src={currentStoryPage.image}
-                alt={currentStoryPage.imageAlt}
-                className="max-w-full max-h-full object-contain rounded-lg md:rounded-xl"
-              />
+            <div className="h-48 md:h-full rounded-xl md:rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-peru-yellow/20 via-white to-peru-blue/20 flex items-center justify-center">
+              <div className="text-center">
+                <div className="text-8xl md:text-9xl mb-4 animate-bounce">
+                  {currentStoryPage.image}
+                </div>
+                <p className="text-sm md:text-base font-comic text-peru-blue font-semibold px-4">
+                  {currentStoryPage.imageAlt}
+                </p>
+              </div>
             </div>
           </div>
 
