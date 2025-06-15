@@ -32,7 +32,7 @@ const StoryViewer: React.FC<StoryViewerProps> = ({ story, onClose }) => {
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-3xl w-full max-w-6xl h-full max-h-[90vh] flex flex-col shadow-2xl">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-peru-yellow/20 to-peru-orange/20 rounded-t-3xl">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-peru-yellow/10 rounded-t-3xl">
           <div className="flex items-center gap-3">
             <Book className="h-6 w-6 text-peru-blue" />
             <h2 className="text-2xl font-title text-peru-blue">{story.title}</h2>
@@ -90,14 +90,15 @@ const StoryViewer: React.FC<StoryViewerProps> = ({ story, onClose }) => {
         )}
 
         {/* Main Content */}
-        <div className="flex-1 flex bg-gradient-to-br from-gray-50 to-gray-100">
-          {/* Image Section */}
+        <div className="flex-1 flex bg-gray-50">
+          {/* Image Section - Fixed aspect ratio */}
           <div className="flex-1 p-6">
-            <div className="h-full rounded-2xl overflow-hidden shadow-lg bg-white">
+            <div className="h-full rounded-2xl overflow-hidden shadow-lg bg-white flex items-center justify-center">
               <img
                 src={currentStoryPage.image}
                 alt={currentStoryPage.imageAlt}
-                className="w-full h-full object-cover"
+                className="max-w-full max-h-full object-contain rounded-xl"
+                style={{ maxHeight: '60vh' }}
               />
             </div>
           </div>
@@ -105,7 +106,7 @@ const StoryViewer: React.FC<StoryViewerProps> = ({ story, onClose }) => {
           {/* Text Section */}
           <div className="flex-1 p-6 flex flex-col justify-center">
             <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-peru-yellow/30">
-              <p className="text-2xl font-comic text-gray-800 leading-relaxed text-center">
+              <p className="text-xl font-comic text-gray-800 leading-relaxed text-center">
                 {currentStoryPage.text}
               </p>
             </div>
