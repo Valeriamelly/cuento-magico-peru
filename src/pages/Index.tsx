@@ -56,7 +56,9 @@ const Index = () => {
 
       {/* Header compacto */}
       <header className="bg-gradient-to-r from-peru-red to-peru-blue text-white py-4 px-4 shadow-lg relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="2" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="3" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.1"/></svg>')] animate-pulse"></div>
+        <div className="absolute inset-0 opacity-20">
+          <div className="w-full h-full bg-white/10 animate-pulse"></div>
+        </div>
         <div className="container mx-auto text-center relative z-10">
           <div className="flex items-center justify-center gap-2 mb-2">
             <Book className="h-8 w-8 animate-bounce text-peru-yellow" />
@@ -152,7 +154,9 @@ const Index = () => {
 
       {/* Sección educativa compacta */}
       <section className="py-6 px-4 bg-gradient-to-r from-peru-green/20 to-peru-blue/20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><path d="M10 10L50 50M50 10L10 50" stroke="white" stroke-width="0.5" opacity="0.1"/></svg>')] animate-pulse"></div>
+        <div className="absolute inset-0 opacity-10">
+          <div className="w-full h-full bg-white animate-pulse"></div>
+        </div>
         <div className="container mx-auto relative z-10">
           <div className="text-center mb-4">
             <h2 className="text-2xl font-title text-peru-blue mb-2 animate-fade-in">
