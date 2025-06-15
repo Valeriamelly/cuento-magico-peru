@@ -2,23 +2,41 @@
 import React, { useState, useMemo } from 'react';
 import { Book, Heart, Star, Globe } from 'lucide-react';
 import SearchBar from '@/components/SearchBar';
+import FilterBar from '@/components/FilterBar';
 import StoryCard from '@/components/StoryCard';
 import StoryViewer from '@/components/StoryViewer';
 import { stories, Story } from '@/data/stories';
 
 const Index = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedAuthor, setSelectedAuthor] = useState('');
+  const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedStory, setSelectedStory] = useState<Story | null>(null);
 
   const filteredStories = useMemo(() => {
-    if (!searchTerm) return stories;
+    let filtered = stories;
     
-    return stories.filter(story =>
-      story.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      story.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      story.region.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [searchTerm]);
+    // Filtrar por término de búsqueda
+    if (searchTerm) {
+      filtered = filtered.filter(story =>
+        story.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        story.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        story.region.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
+    // Filtrar por autor
+    if (selectedAuthor) {
+      filtered = filtered.filter(story => story.author === selectedAuthor);
+    }
+    
+    // Filtrar por región
+    if (selectedRegion) {
+      filtered = filtered.filter(story => story.region === selectedRegion);
+    }
+    
+    return filtered;
+  }, [searchTerm, selectedAuthor, selectedRegion]);
 
   const handleStorySelect = (story: Story) => {
     setSelectedStory(story);
@@ -46,31 +64,39 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Search Section */}
+      {/* Search and Filter Section */}
       <section className="py-12 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-title text-peru-blue mb-4">
-              Busca tu cuento favorito
+              Explora Nuestra Biblioteca
             </h2>
-            <p className="text-lg font-comic text-gray-700 max-w-2xl mx-auto">
-              Explora nuestra colección de cuentos tradicionales peruanos, 
-              organizados por región y autor para profesores y estudiantes.
+            <p className="text-lg font-comic text-gray-700 max-w-2xl mx-auto mb-6">
+              Busca por título, autor o región. Usa los filtros para encontrar exactamente lo que necesitas para tu clase.
             </p>
           </div>
           
-          <SearchBar 
-            searchTerm={searchTerm}
-            onSearchChange={setSearchTerm}
-          />
+          <div className="space-y-6">
+            <SearchBar 
+              searchTerm={searchTerm}
+              onSearchChange={setSearchTerm}
+            />
+            
+            <FilterBar
+              selectedAuthor={selectedAuthor}
+              selectedRegion={selectedRegion}
+              onAuthorChange={setSelectedAuthor}
+              onRegionChange={setSelectedRegion}
+            />
+          </div>
           
-          {searchTerm && (
-            <div className="text-center mt-4">
-              <p className="text-peru-blue font-comic">
-                Encontrados: {filteredStories.length} cuentos
-              </p>
-            </div>
-          )}
+          <div className="text-center mt-6">
+            <p className="text-peru-blue font-comic text-lg">
+              <span className="font-bold">{filteredStories.length}</span> cuentos encontrados
+              {selectedAuthor && <span className="text-peru-green"> • Autor: {selectedAuthor}</span>}
+              {selectedRegion && <span className="text-peru-purple"> • Región: {selectedRegion}</span>}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -87,15 +113,25 @@ const Index = () => {
             ))}
           </div>
           
-          {filteredStories.length === 0 && searchTerm && (
+          {filteredStories.length === 0 && (
             <div className="text-center py-12">
               <div className="text-6xl mb-4">📚</div>
               <h3 className="text-2xl font-title text-peru-blue mb-2">
                 No se encontraron cuentos
               </h3>
-              <p className="text-lg font-comic text-gray-600">
-                Intenta con otras palabras clave o explora todos nuestros cuentos
+              <p className="text-lg font-comic text-gray-600 mb-4">
+                Intenta con otros filtros o términos de búsqueda
               </p>
+              <button
+                onClick={() => {
+                  setSearchTerm('');
+                  setSelectedAuthor('');
+                  setSelectedRegion('');
+                }}
+                className="bg-peru-blue hover:bg-peru-blue/80 text-white font-comic px-6 py-3 rounded-full transition-colors"
+              >
+                Ver todos los cuentos
+              </button>
             </div>
           )}
         </div>
@@ -111,7 +147,7 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center bg-white/50 p-6 rounded-2xl">
+            <div className="text-center bg-white/80 p-6 rounded-2xl shadow-lg">
               <Globe className="h-12 w-12 text-peru-green mx-auto mb-4" />
               <h3 className="text-xl font-title text-peru-blue mb-2">
                 Diversidad Cultural
@@ -121,17 +157,17 @@ const Index = () => {
               </p>
             </div>
             
-            <div className="text-center bg-white/50 p-6 rounded-2xl">
+            <div className="text-center bg-white/80 p-6 rounded-2xl shadow-lg">
               <Star className="h-12 w-12 text-peru-orange mx-auto mb-4" />
               <h3 className="text-xl font-title text-peru-blue mb-2">
-                Valores Ancestrales
+                Autores Reconocidos
               </h3>
               <p className="font-comic text-gray-700">
-                Cada cuento enseña importantes lecciones morales y culturales
+                Desde César Vallejo hasta tradiciones orales ancestrales
               </p>
             </div>
             
-            <div className="text-center bg-white/50 p-6 rounded-2xl">
+            <div className="text-center bg-white/80 p-6 rounded-2xl shadow-lg">
               <Book className="h-12 w-12 text-peru-purple mx-auto mb-4" />
               <h3 className="text-xl font-title text-peru-blue mb-2">
                 Recurso Educativo

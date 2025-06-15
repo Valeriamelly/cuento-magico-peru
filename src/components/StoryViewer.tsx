@@ -30,9 +30,9 @@ const StoryViewer: React.FC<StoryViewerProps> = ({ story, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-      <div className="bg-gradient-to-br from-peru-yellow/10 to-peru-orange/10 rounded-3xl w-full max-w-6xl h-full max-h-[90vh] flex flex-col shadow-2xl">
+      <div className="bg-white rounded-3xl w-full max-w-6xl h-full max-h-[90vh] flex flex-col shadow-2xl">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-peru-yellow/30">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-peru-yellow/20 to-peru-orange/20 rounded-t-3xl">
           <div className="flex items-center gap-3">
             <Book className="h-6 w-6 text-peru-blue" />
             <h2 className="text-2xl font-title text-peru-blue">{story.title}</h2>
@@ -60,11 +60,15 @@ const StoryViewer: React.FC<StoryViewerProps> = ({ story, onClose }) => {
 
         {/* Info Panel */}
         {showInfo && (
-          <Card className="m-6 border-peru-green/50 bg-peru-green/5">
-            <CardHeader>
+          <Card className="m-6 border-peru-green/50 bg-white shadow-lg">
+            <CardHeader className="bg-peru-green/10 rounded-t-lg">
               <CardTitle className="text-peru-green font-title">Información Cultural</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
+            <CardContent className="space-y-3 bg-white">
+              <div>
+                <span className="font-comic font-bold text-peru-blue">Autor: </span>
+                <span className="font-comic text-gray-700">{story.author}</span>
+              </div>
               <div>
                 <span className="font-comic font-bold text-peru-blue">Región: </span>
                 <span className="font-comic text-gray-700">{story.region}</span>
@@ -86,10 +90,10 @@ const StoryViewer: React.FC<StoryViewerProps> = ({ story, onClose }) => {
         )}
 
         {/* Main Content */}
-        <div className="flex-1 flex">
+        <div className="flex-1 flex bg-gradient-to-br from-gray-50 to-gray-100">
           {/* Image Section */}
           <div className="flex-1 p-6">
-            <div className="h-full rounded-2xl overflow-hidden shadow-lg">
+            <div className="h-full rounded-2xl overflow-hidden shadow-lg bg-white">
               <img
                 src={currentStoryPage.image}
                 alt={currentStoryPage.imageAlt}
@@ -100,7 +104,7 @@ const StoryViewer: React.FC<StoryViewerProps> = ({ story, onClose }) => {
 
           {/* Text Section */}
           <div className="flex-1 p-6 flex flex-col justify-center">
-            <div className="bg-white/90 rounded-2xl p-8 shadow-lg">
+            <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-peru-yellow/30">
               <p className="text-2xl font-comic text-gray-800 leading-relaxed text-center">
                 {currentStoryPage.text}
               </p>
@@ -109,11 +113,11 @@ const StoryViewer: React.FC<StoryViewerProps> = ({ story, onClose }) => {
         </div>
 
         {/* Footer Navigation */}
-        <div className="flex items-center justify-between p-6 border-t border-peru-yellow/30">
+        <div className="flex items-center justify-between p-6 border-t border-gray-200 bg-white rounded-b-3xl">
           <Button
             onClick={prevPage}
             disabled={currentPage === 0}
-            className="bg-peru-blue hover:bg-peru-blue/80 text-white font-comic px-6 py-3 rounded-full disabled:opacity-50"
+            className="bg-peru-blue hover:bg-peru-blue/80 text-white font-comic px-6 py-3 rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <ArrowLeft className="h-5 w-5 mr-2" />
             Anterior
@@ -124,10 +128,10 @@ const StoryViewer: React.FC<StoryViewerProps> = ({ story, onClose }) => {
               <button
                 key={index}
                 onClick={() => setCurrentPage(index)}
-                className={`w-3 h-3 rounded-full transition-colors ${
+                className={`w-4 h-4 rounded-full transition-all duration-200 ${
                   index === currentPage
-                    ? 'bg-peru-red'
-                    : 'bg-peru-yellow/50 hover:bg-peru-yellow'
+                    ? 'bg-peru-red scale-125'
+                    : 'bg-peru-yellow/50 hover:bg-peru-yellow hover:scale-110'
                 }`}
               />
             ))}
@@ -136,7 +140,7 @@ const StoryViewer: React.FC<StoryViewerProps> = ({ story, onClose }) => {
           <Button
             onClick={nextPage}
             disabled={currentPage === story.pages.length - 1}
-            className="bg-peru-blue hover:bg-peru-blue/80 text-white font-comic px-6 py-3 rounded-full disabled:opacity-50"
+            className="bg-peru-blue hover:bg-peru-blue/80 text-white font-comic px-6 py-3 rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Siguiente
             <ArrowRight className="h-5 w-5 ml-2" />
@@ -144,8 +148,8 @@ const StoryViewer: React.FC<StoryViewerProps> = ({ story, onClose }) => {
         </div>
 
         {/* Page Counter */}
-        <div className="text-center pb-4">
-          <span className="text-peru-blue font-comic text-sm">
+        <div className="text-center pb-4 bg-white">
+          <span className="text-peru-blue font-comic text-sm font-bold">
             Página {currentPage + 1} de {story.pages.length}
           </span>
         </div>
