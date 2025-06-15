@@ -47,75 +47,88 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-peru-yellow/20 via-peru-orange/10 to-peru-pink/20">
-      {/* Header */}
-      <header className="bg-gradient-to-r from-peru-red to-peru-blue text-white py-8 px-4 shadow-lg">
-        <div className="container mx-auto text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Book className="h-12 w-12 animate-bounce-gentle" />
-            <h1 className="text-4xl md:text-6xl font-title">
+    <div className="min-h-screen bg-gradient-to-br from-peru-yellow/30 via-peru-orange/20 to-peru-pink/30 relative overflow-hidden">
+      {/* Elementos decorativos flotantes */}
+      <div className="absolute top-10 left-10 animate-bounce text-4xl opacity-30">🌟</div>
+      <div className="absolute top-20 right-20 animate-pulse text-3xl opacity-40">📚</div>
+      <div className="absolute bottom-20 left-16 animate-bounce text-2xl opacity-35" style={{animationDelay: '1s'}}>🎨</div>
+      <div className="absolute bottom-32 right-32 animate-pulse text-3xl opacity-30" style={{animationDelay: '0.5s'}}>🏔️</div>
+
+      {/* Header compacto */}
+      <header className="bg-gradient-to-r from-peru-red to-peru-blue text-white py-4 px-4 shadow-lg relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="2" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="3" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.1"/></svg>')] animate-pulse"></div>
+        <div className="container mx-auto text-center relative z-10">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Book className="h-8 w-8 animate-bounce text-peru-yellow" />
+            <h1 className="text-3xl md:text-4xl font-title animate-fade-in">
               Cuentos del Perú
             </h1>
-            <Heart className="h-12 w-12 animate-bounce-gentle text-peru-yellow" />
+            <Heart className="h-8 w-8 animate-pulse text-peru-yellow" />
           </div>
-          <p className="text-xl md:text-2xl font-comic opacity-90">
+          <p className="text-lg font-comic opacity-90 animate-fade-in" style={{animationDelay: '0.3s'}}>
             Descubre las historias tradicionales de nuestra tierra
           </p>
         </div>
       </header>
 
-      {/* Search and Filter Section */}
-      <section className="py-12 px-4">
+      {/* Sección de búsqueda y filtros compacta */}
+      <section className="py-6 px-4">
         <div className="container mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-title text-peru-blue mb-4">
+          <div className="text-center mb-4">
+            <h2 className="text-2xl font-title text-peru-blue mb-2 animate-fade-in">
               Explora Nuestra Biblioteca
             </h2>
-            <p className="text-lg font-comic text-gray-700 max-w-2xl mx-auto mb-6">
-              Busca por título, autor o región. Usa los filtros para encontrar exactamente lo que necesitas para tu clase.
-            </p>
           </div>
           
-          <div className="space-y-6">
-            <SearchBar 
-              searchTerm={searchTerm}
-              onSearchChange={setSearchTerm}
-            />
+          <div className="space-y-4">
+            <div className="animate-fade-in" style={{animationDelay: '0.2s'}}>
+              <SearchBar 
+                searchTerm={searchTerm}
+                onSearchChange={setSearchTerm}
+              />
+            </div>
             
-            <FilterBar
-              selectedAuthor={selectedAuthor}
-              selectedRegion={selectedRegion}
-              onAuthorChange={setSelectedAuthor}
-              onRegionChange={setSelectedRegion}
-            />
+            <div className="animate-fade-in" style={{animationDelay: '0.4s'}}>
+              <FilterBar
+                selectedAuthor={selectedAuthor}
+                selectedRegion={selectedRegion}
+                onAuthorChange={setSelectedAuthor}
+                onRegionChange={setSelectedRegion}
+              />
+            </div>
           </div>
           
-          <div className="text-center mt-6">
+          <div className="text-center mt-3 animate-fade-in" style={{animationDelay: '0.6s'}}>
             <p className="text-peru-blue font-comic text-lg">
-              <span className="font-bold">{filteredStories.length}</span> cuentos encontrados
-              {selectedAuthor && <span className="text-peru-green"> • Autor: {selectedAuthor}</span>}
-              {selectedRegion && <span className="text-peru-purple"> • Región: {selectedRegion}</span>}
+              <span className="font-bold animate-pulse">{filteredStories.length}</span> cuentos encontrados
+              {selectedAuthor && <span className="text-peru-green"> • {selectedAuthor}</span>}
+              {selectedRegion && <span className="text-peru-purple"> • {selectedRegion}</span>}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Stories Grid */}
-      <section className="py-8 px-4">
+      {/* Grid de historias - más espacio */}
+      <section className="py-4 px-4 flex-1">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredStories.map((story) => (
-              <StoryCard
+            {filteredStories.map((story, index) => (
+              <div 
                 key={story.id}
-                story={story}
-                onClick={() => handleStorySelect(story)}
-              />
+                className="animate-fade-in"
+                style={{animationDelay: `${0.1 * (index % 8)}s`}}
+              >
+                <StoryCard
+                  story={story}
+                  onClick={() => handleStorySelect(story)}
+                />
+              </div>
             ))}
           </div>
           
           {filteredStories.length === 0 && (
-            <div className="text-center py-12">
-              <div className="text-6xl mb-4">📚</div>
+            <div className="text-center py-8 animate-fade-in">
+              <div className="text-6xl mb-4 animate-bounce">📚</div>
               <h3 className="text-2xl font-title text-peru-blue mb-2">
                 No se encontraron cuentos
               </h3>
@@ -128,7 +141,7 @@ const Index = () => {
                   setSelectedAuthor('');
                   setSelectedRegion('');
                 }}
-                className="bg-peru-blue hover:bg-peru-blue/80 text-white font-comic px-6 py-3 rounded-full transition-colors"
+                className="bg-peru-blue hover:bg-peru-blue/80 text-white font-comic px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg animate-pulse"
               >
                 Ver todos los cuentos
               </button>
@@ -137,57 +150,56 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Educational Info */}
-      <section className="py-12 px-4 bg-gradient-to-r from-peru-green/10 to-peru-blue/10">
-        <div className="container mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-title text-peru-blue mb-4">
+      {/* Sección educativa compacta */}
+      <section className="py-6 px-4 bg-gradient-to-r from-peru-green/20 to-peru-blue/20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><path d="M10 10L50 50M50 10L10 50" stroke="white" stroke-width="0.5" opacity="0.1"/></svg>')] animate-pulse"></div>
+        <div className="container mx-auto relative z-10">
+          <div className="text-center mb-4">
+            <h2 className="text-2xl font-title text-peru-blue mb-2 animate-fade-in">
               Literatura Peruana para Educadores
             </h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center bg-white/80 p-6 rounded-2xl shadow-lg">
-              <Globe className="h-12 w-12 text-peru-green mx-auto mb-4" />
-              <h3 className="text-xl font-title text-peru-blue mb-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="text-center bg-white/90 p-4 rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl animate-fade-in backdrop-blur-sm">
+              <Globe className="h-10 w-10 text-peru-green mx-auto mb-3 animate-pulse" />
+              <h3 className="text-lg font-title text-peru-blue mb-2">
                 Diversidad Cultural
               </h3>
-              <p className="font-comic text-gray-700">
-                Cuentos de las tres regiones del Perú: Costa, Sierra y Selva
+              <p className="font-comic text-gray-700 text-sm">
+                Cuentos de las tres regiones del Perú
               </p>
             </div>
             
-            <div className="text-center bg-white/80 p-6 rounded-2xl shadow-lg">
-              <Star className="h-12 w-12 text-peru-orange mx-auto mb-4" />
-              <h3 className="text-xl font-title text-peru-blue mb-2">
+            <div className="text-center bg-white/90 p-4 rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl animate-fade-in backdrop-blur-sm" style={{animationDelay: '0.2s'}}>
+              <Star className="h-10 w-10 text-peru-orange mx-auto mb-3 animate-bounce" />
+              <h3 className="text-lg font-title text-peru-blue mb-2">
                 Autores Reconocidos
               </h3>
-              <p className="font-comic text-gray-700">
-                Desde César Vallejo hasta tradiciones orales ancestrales
+              <p className="font-comic text-gray-700 text-sm">
+                Desde César Vallejo hasta tradiciones ancestrales
               </p>
             </div>
             
-            <div className="text-center bg-white/80 p-6 rounded-2xl shadow-lg">
-              <Book className="h-12 w-12 text-peru-purple mx-auto mb-4" />
-              <h3 className="text-xl font-title text-peru-blue mb-2">
+            <div className="text-center bg-white/90 p-4 rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl animate-fade-in backdrop-blur-sm" style={{animationDelay: '0.4s'}}>
+              <Book className="h-10 w-10 text-peru-purple mx-auto mb-3 animate-pulse" />
+              <h3 className="text-lg font-title text-peru-blue mb-2">
                 Recurso Educativo
               </h3>
-              <p className="font-comic text-gray-700">
-                Herramienta perfecta para profesores y estudiantes
+              <p className="font-comic text-gray-700 text-sm">
+                Herramienta perfecta para profesores
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-peru-blue text-white py-8 px-4">
-        <div className="container mx-auto text-center">
-          <p className="font-comic text-lg">
+      {/* Footer compacto */}
+      <footer className="bg-peru-blue text-white py-4 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-peru-blue via-peru-purple to-peru-blue animate-pulse opacity-50"></div>
+        <div className="container mx-auto text-center relative z-10">
+          <p className="font-comic text-base animate-fade-in">
             Preservando nuestras tradiciones para las futuras generaciones 🇵🇪
-          </p>
-          <p className="font-comic text-sm opacity-75 mt-2">
-            Una herramienta educativa para conocer la rica literatura peruana
           </p>
         </div>
       </footer>
