@@ -50,55 +50,55 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50">
-      {/* Hero Section con diseño creativo */}
-      <div className="relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+      {/* Hero Section con diseño moderno educativo */}
+      <div className="relative overflow-hidden bg-gradient-to-r from-indigo-600 via-purple-600 to-teal-600">
         {/* Elementos decorativos de fondo */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 text-6xl animate-pulse">🏔️</div>
-          <div className="absolute top-20 right-20 text-4xl animate-pulse" style={{animationDelay: '1s'}}>🎭</div>
-          <div className="absolute bottom-20 left-16 text-5xl animate-pulse" style={{animationDelay: '2s'}}>🦜</div>
-          <div className="absolute bottom-32 right-32 text-3xl animate-pulse" style={{animationDelay: '0.5s'}}>🌺</div>
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-10 text-4xl">📚</div>
+          <div className="absolute top-20 right-20 text-3xl">🎭</div>
+          <div className="absolute bottom-20 left-16 text-4xl">🌟</div>
+          <div className="absolute bottom-32 right-32 text-3xl">✨</div>
         </div>
 
-        <div className="relative px-4 py-8 md:py-16">
+        <div className="relative px-4 py-12 md:py-20">
           {/* Header principal */}
-          <div className="text-center mb-8 md:mb-12">
-            <div className="inline-flex items-center gap-3 mb-4 px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full shadow-lg">
-              <Book className="h-8 w-8 text-peru-blue" />
-              <h1 className="text-3xl md:text-5xl font-title text-peru-blue">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-3 mb-6 px-8 py-4 bg-white/90 backdrop-blur-sm rounded-full shadow-xl">
+              <Book className="h-8 w-8 text-indigo-600" />
+              <h1 className="text-3xl md:text-5xl font-title text-indigo-800">
                 Cuentos del Perú
               </h1>
-              <Heart className="h-8 w-8 text-peru-red" />
+              <Heart className="h-8 w-8 text-rose-500" />
             </div>
-            <p className="text-lg md:text-xl font-comic text-peru-blue/80 max-w-2xl mx-auto">
-              Sumérgete en las historias mágicas de nuestra tierra ancestral
+            <p className="text-lg md:text-xl font-comic text-white/90 max-w-2xl mx-auto">
+              Descubre las historias mágicas de nuestra tierra ancestral
             </p>
           </div>
 
-          {/* Barra de búsqueda integrada */}
+          {/* Barra de búsqueda moderna */}
           <div className="max-w-4xl mx-auto mb-8">
-            <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-peru-yellow/30">
+            <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-2xl border border-white/30">
               {/* Búsqueda principal */}
-              <div className="relative mb-4">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-peru-blue/60" />
+              <div className="relative mb-6">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-500" />
                 <input
                   type="text"
                   placeholder="Busca tu cuento favorito..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-4 bg-peru-blue/5 border-2 border-transparent focus:border-peru-yellow rounded-2xl text-lg font-comic outline-none transition-all duration-300 placeholder:text-peru-blue/50"
+                  className="w-full pl-12 pr-4 py-4 bg-slate-50 border-2 border-slate-200 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 rounded-xl text-lg font-comic outline-none transition-all duration-300 placeholder:text-slate-400"
                 />
               </div>
 
-              {/* Filtros compactos */}
-              <div className="flex flex-wrap gap-3 items-center justify-between">
+              {/* Filtros modernos */}
+              <div className="flex flex-wrap gap-4 items-center justify-between">
                 <div className="flex flex-wrap gap-3">
                   {/* Filtro de autor */}
                   <select
                     value={selectedAuthor}
                     onChange={(e) => setSelectedAuthor(e.target.value)}
-                    className="px-4 py-2 bg-peru-green/10 border border-peru-green/30 rounded-full text-sm font-comic text-peru-green focus:outline-none focus:ring-2 focus:ring-peru-green/50"
+                    className="px-4 py-2 bg-emerald-50 border-2 border-emerald-200 rounded-lg text-sm font-comic text-emerald-700 focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100"
                   >
                     <option value="">Todos los autores</option>
                     {authors.map(author => (
@@ -110,7 +110,7 @@ const Index = () => {
                   <select
                     value={selectedRegion}
                     onChange={(e) => setSelectedRegion(e.target.value)}
-                    className="px-4 py-2 bg-peru-purple/10 border border-peru-purple/30 rounded-full text-sm font-comic text-peru-purple focus:outline-none focus:ring-2 focus:ring-peru-purple/50"
+                    className="px-4 py-2 bg-violet-50 border-2 border-violet-200 rounded-lg text-sm font-comic text-violet-700 focus:outline-none focus:border-violet-400 focus:ring-2 focus:ring-violet-100"
                   >
                     <option value="">Todas las regiones</option>
                     {regions.map(region => (
@@ -121,9 +121,9 @@ const Index = () => {
 
                 {/* Contador y limpiar */}
                 <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-2 px-3 py-1 bg-peru-yellow/20 rounded-full">
-                    <Sparkles className="h-4 w-4 text-peru-orange" />
-                    <span className="text-sm font-comic font-bold text-peru-blue">
+                  <div className="flex items-center gap-2 px-3 py-2 bg-amber-100 border border-amber-200 rounded-lg">
+                    <Sparkles className="h-4 w-4 text-amber-600" />
+                    <span className="text-sm font-comic font-bold text-amber-800">
                       {filteredStories.length} cuentos
                     </span>
                   </div>
@@ -131,7 +131,7 @@ const Index = () => {
                   {(selectedAuthor || selectedRegion || searchTerm) && (
                     <button
                       onClick={clearFilters}
-                      className="px-4 py-2 bg-peru-red/10 text-peru-red rounded-full text-sm font-comic hover:bg-peru-red hover:text-white transition-all duration-300"
+                      className="px-4 py-2 bg-rose-100 text-rose-700 border border-rose-200 rounded-lg text-sm font-comic hover:bg-rose-200 transition-all duration-300"
                     >
                       Limpiar
                     </button>
@@ -143,15 +143,15 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Grid de historias con diseño masonry */}
-      <div className="px-4 pb-8">
+      {/* Grid de historias mejorado */}
+      <div className="px-4 py-8">
         <div className="max-w-7xl mx-auto">
           {filteredStories.length > 0 ? (
-            <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredStories.map((story, index) => (
                 <div 
                   key={story.id}
-                  className="break-inside-avoid animate-fade-in"
+                  className="animate-fade-in"
                   style={{animationDelay: `${0.1 * (index % 8)}s`}}
                 >
                   <StoryCard
@@ -164,15 +164,15 @@ const Index = () => {
           ) : (
             <div className="text-center py-16">
               <div className="text-8xl mb-6">🔍</div>
-              <h3 className="text-3xl font-title text-peru-blue mb-4">
+              <h3 className="text-3xl font-title text-slate-700 mb-4">
                 No encontramos cuentos
               </h3>
-              <p className="text-xl font-comic text-gray-600 mb-8 max-w-md mx-auto">
+              <p className="text-xl font-comic text-slate-600 mb-8 max-w-md mx-auto">
                 Intenta con otros términos de búsqueda o explora todas nuestras historias
               </p>
               <button
                 onClick={clearFilters}
-                className="inline-flex items-center gap-2 bg-peru-blue hover:bg-peru-blue/80 text-white font-comic px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
+                className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-comic px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
               >
                 <Zap className="h-5 w-5" />
                 Ver todos los cuentos
@@ -182,10 +182,10 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Footer minimalista */}
-      <footer className="bg-peru-blue/5 border-t border-peru-blue/10 py-6">
+      {/* Footer moderno */}
+      <footer className="bg-slate-800 text-white py-8">
         <div className="max-w-4xl mx-auto text-center px-4">
-          <p className="font-comic text-peru-blue/80">
+          <p className="font-comic text-slate-300">
             Preservando nuestras tradiciones ancestrales 🇵🇪 ✨
           </p>
         </div>
