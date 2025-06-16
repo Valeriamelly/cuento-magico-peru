@@ -95,7 +95,7 @@ const StoryViewer: React.FC<StoryViewerProps> = ({ story, onClose }) => {
           <div className="flex-1 p-3 md:p-6 order-1 md:order-1">
             <div className="h-48 md:h-full rounded-xl md:rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-peru-yellow/20 via-white to-peru-blue/20 flex items-center justify-center">
               <div className="text-center">
-                <div className="text-8xl md:text-9xl mb-4 transition-transform duration-300 hover:scale-105">
+                <div className="text-8xl md:text-9xl mb-4 animate-bounce">
                   {currentStoryPage.image}
                 </div>
                 <p className="text-sm md:text-base font-comic text-peru-blue font-semibold px-4">
